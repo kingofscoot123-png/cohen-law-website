@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>צור קשר | כהן ושות׳, עורכי דין</title>
+  <meta name="description" content="השאירו פרטים, התקשרו או כתבו לוואטסאפ. ויצמן 14, תל אביב. א׳–ה׳ 09:00–18:00.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@600;700&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="contact" data-root="./">
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">צור קשר</span>
+        <h1>דברו איתנו. נחזור עוד היום.</h1>
+        <p class="lede">טופס קצר, טלפון או וואטסאפ. לא צריך לספר הכול כדי שנתחיל.</p>
+      </div>
+    </section>
+    <hr class="gold-rule container">
+
+    <section class="section">
+      <div class="container contact-grid">
+        <form class="form-card form" data-validate novalidate>
+          <div class="form-success" role="status">תודה. הפרטים התקבלו ונחזור אליכם בהקדם.</div>
+          <div class="field">
+            <label for="name">שם מלא</label>
+            <input id="name" name="name" autocomplete="name" required>
+            <div class="field-error">נא למלא שם.</div>
+          </div>
+          <div class="field">
+            <label for="phone">טלפון</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            <div class="field-error">נא למלא מספר טלפון.</div>
+          </div>
+          <div class="field">
+            <label for="email">דוא״ל</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+            <div class="field-error">נא למלא כתובת דוא״ל תקינה.</div>
+          </div>
+          <div class="field">
+            <label for="topic">נושא הפנייה</label>
+            <select id="topic" name="topic" required>
+              <option value="">בחרו תחום</option>
+              <option>דיני משפחה</option>
+              <option>דיני עבודה</option>
+              <option>נדל״ן</option>
+              <option>אחר</option>
+            </select>
+            <div class="field-error">נא לבחור נושא.</div>
+          </div>
+          <div class="field">
+            <label for="message">תיאור קצר</label>
+            <textarea id="message" name="message" rows="4" placeholder=""></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">שלחו ונחזור אליכם</button>
+        </form>
+
+        <aside class="contact-aside">
+          <div class="info-box">
+            <h3>טלפון ווואטסאפ</h3>
+            <p><a href="tel:035614488" style="direction:ltr">03-561-4488</a></p>
+            <p><a href="https://wa.me/972525554488" target="_blank" rel="noopener">שלחו הודעה בוואטסאפ</a></p>
+            <p><a href="mailto:office@cohen-law.co.il">office@cohen-law.co.il</a></p>
+          </div>
+          <div class="info-box">
+            <h3>המשרד</h3>
+            <p>ויצמן 14, תל אביב<br>א׳–ה׳ 09:00–18:00<br>ו׳ 09:00–13:00</p>
+          </div>
+          <iframe class="map-frame" title="מפת המשרד בתל אביב" src="https://www.openstreetmap.org/export/embed.html?bbox=34.778%2C32.078%2C34.792%2C32.086&amp;layer=mapnik&amp;marker=32.082%2C34.785" loading="lazy"></iframe>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

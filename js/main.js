@@ -1,4 +1,6 @@
 (function () {
+  document.documentElement.classList.add("js");
+
   const root = document.body.dataset.root || "./";
   const page = document.body.dataset.page || "";
   const lang = document.documentElement.lang || "he";
@@ -60,11 +62,15 @@
             <a href="${routes.faq}" class="${page === "faq" ? "is-active" : ""}">שאלות נפוצות</a>
             <a href="${routes.team}" class="${page === "team" ? "is-active" : ""}">צוות</a>
             <a href="${routes.contact}" class="${page === "contact" ? "is-active" : ""}">צור קשר</a>
+            <div class="nav-mobile-cta">
+              <a class="lang-switch" href="${routes.enHome}" lang="en" hreflang="en">EN</a>
+              <a class="btn btn-primary" href="${routes.contact}">דברו איתנו</a>
+            </div>
           </nav>
           <div class="header-actions">
             <a class="lang-switch" href="${routes.enHome}" lang="en" hreflang="en">EN</a>
             <a class="header-phone" href="tel:035614488">${icons.phone}<span>03-561-4488</span></a>
-            <a class="btn btn-primary" href="${routes.contact}">דברו איתנו</a>
+            <a class="btn btn-primary magnetic" href="${routes.contact}">דברו איתנו</a>
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="פתח תפריט"><span></span></button>
           </div>
         </div>
@@ -87,6 +93,10 @@
             <a href="${routes.home}" class="${page === "home" ? "is-active" : ""}">Home</a>
             <a href="${routes.realEstate}" class="${page === "real-estate" ? "is-active" : ""}">Real Estate</a>
             <a href="${routes.contact}" class="${page === "contact" ? "is-active" : ""}">Contact</a>
+            <div class="nav-mobile-cta">
+              <a class="lang-switch" href="${routes.heHome}" lang="he" hreflang="he">עב</a>
+              <a class="btn btn-primary" href="${routes.contact}">Book a consultation</a>
+            </div>
           </nav>
           <div class="header-actions">
             <a class="lang-switch" href="${routes.heHome}" lang="he" hreflang="he">עב</a>
@@ -192,10 +202,21 @@
 
   const nav = document.getElementById("site-nav");
   const toggle = document.querySelector(".menu-toggle");
+  const setMenu = (open) => {
+    if (!nav || !toggle) return;
+    nav.classList.toggle("is-open", open);
+    toggle.classList.toggle("is-open", open);
+    document.body.classList.toggle("is-menu-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? (isEn ? "Close menu" : "סגור תפריט") : (isEn ? "Open menu" : "פתח תפריט"));
+  };
   if (toggle && nav) {
-    toggle.addEventListener("click", () => {
-      const open = nav.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(open));
+    toggle.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenu(false));
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMenu(false);
     });
   }
 
@@ -227,4 +248,31 @@
       }
     });
   });
+
+  const motion = document.createElement("script");
+  motion.src = `${root}js/motion.js`;
+  document.body.appendChild(motion);
+
+  const revealEls = document.querySelectorAll(".reveal-on-scroll, .reveal-title");
+  const show = (el) => el.classList.add("is-inview");
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    revealEls.forEach(show);
+  } else if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-inview");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+    revealEls.forEach((el) => io.observe(el));
+    window.setTimeout(() => revealEls.forEach(show), 2400);
+  } else {
+    revealEls.forEach(show);
+  }
 })();

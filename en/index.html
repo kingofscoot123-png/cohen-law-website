@@ -16,20 +16,29 @@
   <div id="site-header"></div>
   <main id="main">
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="reveal">
+      <div class="hero-mesh" aria-hidden="true">
+        <span class="hero-blob hero-blob--1"></span>
+        <span class="hero-blob hero-blob--2"></span>
+        <span class="hero-blob hero-blob--3"></span>
+      </div>
+      <div class="container hero-layout">
+        <div class="hero-portrait">
+          <div class="hero-portrait__frame">
+            <span class="hero-portrait__mesh" aria-hidden="true"></span>
+            <img src="../assets/images/portrait-avi-cohen.png" alt="Advocate Avi Cohen, managing partner" width="720" height="900">
+          </div>
+          <span class="hero-name">Adv. Avi Cohen, Managing Partner</span>
+        </div>
+        <div class="hero-copy">
           <span class="eyebrow">Cohen & Co. · Tel Aviv</span>
-          <h1>Legal counsel in family, employment and real estate.</h1>
-          <p class="lede">A boutique firm that explains the path in plain language, especially for international buyers navigating an Israeli property deal.</p>
+          <h1>A lawyer who sees the person not only the file</h1>
+          <p class="lede">Plain language, without the usual legal fog</p>
           <div class="btn-group">
-            <a class="btn btn-primary" href="contact.html">Book a consultation</a>
-            <a class="btn btn-secondary" href="tel:+97235614488">Call the office</a>
+            <a class="btn btn-primary magnetic" href="contact.html">Book a consultation</a>
+            <a class="btn btn-secondary magnetic" href="tel:+97235614488">Call the office</a>
           </div>
         </div>
-        <figure class="hero-photo reveal">
-          <img src="../assets/images/portrait-avi-cohen.png" alt="Advocate Avi Cohen, managing partner" width="720" height="900">
-          <figcaption class="hero-caption">Adv. Avi Cohen, Managing Partner</figcaption>
-        </figure>
+        <p class="hero-badge">12 years in family employment and real estate</p>
       </div>
     </section>
     <section class="trust-bar">
@@ -43,28 +52,39 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Practice</span>
-          <h2>Focused on three areas. Present for the whole matter.</h2>
+          <h2>Three practices, one continuous counsel</h2>
         </div>
-        <div class="cards-3">
-          <article class="card">
-            <h3>Family law</h3>
-            <p>Divorce, custody and agreements, handled with care and without legal theatre.</p>
-          </article>
-          <article class="card">
-            <h3>Employment</h3>
-            <p>Dismissals, workplace rights and contracts for employees and employers.</p>
-          </article>
-          <article class="card">
-            <h3>Real estate</h3>
-            <p>Purchases, sales and due diligence, with full English support for overseas buyers.</p>
-            <a class="card-link" href="real-estate.html">Read more</a>
-          </article>
-        </div>
+        <nav class="practice-list" aria-label="Practice areas">
+          <a class="practice-row" href="real-estate.html">
+            <span class="practice-row__index">01</span>
+            <span class="practice-row__body">
+              <strong>Family law</strong>
+              <span>Divorce, custody and agreements, handled with care</span>
+            </span>
+            <span class="practice-row__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="practice-row" href="real-estate.html">
+            <span class="practice-row__index">02</span>
+            <span class="practice-row__body">
+              <strong>Employment</strong>
+              <span>Dismissals, workplace rights and contracts</span>
+            </span>
+            <span class="practice-row__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="practice-row" href="real-estate.html">
+            <span class="practice-row__index">03</span>
+            <span class="practice-row__body">
+              <strong>Real estate</strong>
+              <span>Purchases, sales and due diligence, in English and Hebrew</span>
+            </span>
+            <span class="practice-row__arrow" aria-hidden="true">→</span>
+          </a>
+        </nav>
       </div>
     </section>
     <section class="section section--navy">
       <div class="container">
-        <h2>Starting with a conversation, not a long form.</h2>
+        <h2>Start with a conversation, not a long form</h2>
         <p class="lede" style="color:rgba(255,255,255,.78);margin-bottom:24px">Call +972-3-561-4488 or send a note. We reply during business hours, usually the same day.</p>
         <a class="btn btn-secondary btn-secondary--light" href="contact.html">Contact the firm</a>
       </div>

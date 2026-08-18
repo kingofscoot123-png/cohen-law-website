@@ -294,7 +294,10 @@
       let ok = true;
       form.querySelectorAll("[required]").forEach((field) => {
         const wrap = field.closest(".field");
-        const valid = field.value.trim().length > 0 && (field.type !== "email" || /.+@.+\..+/.test(field.value));
+        const value = field.value.trim();
+        const phoneOk = field.type !== "tel" || /[\d\-+()\s]{7,}/.test(value);
+        const emailOk = field.type !== "email" || /.+@.+\..+/.test(value);
+        const valid = value.length > 0 && phoneOk && emailOk;
         wrap.classList.toggle("has-error", !valid);
         if (!valid) ok = false;
       });

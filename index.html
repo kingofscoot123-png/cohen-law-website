@@ -8,55 +8,26 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@600;700&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@600;700&family=Heebo:wght@300;400;500;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="home" data-root="./">
   <div id="site-header"></div>
   <main id="main">
-    <section class="hero">
-      <div class="hero-media" aria-hidden="true">
-        <img src="assets/images/hero-atmosphere.png" alt="">
-        <div class="hero-overlay"></div>
-      </div>
-      <div class="hero-mesh" aria-hidden="true"></div>
-      <div class="container hero-layout">
-        <div class="hero-copy">
-          <div class="hero-brand hero-reveal">
-            <img src="assets/images/logo-cohen.png" alt="כהן ושות׳, עורכי דין" class="hero-brand__logo" width="300" height="150" decoding="async">
-          </div>
-          <span class="eyebrow hero-reveal">תל אביב · משרד בוטיק</span>
-          <h1 class="hero-reveal">עורך דין שרואה את האדם לא רק את התיק</h1>
-          <p class="lede hero-reveal">מדברים בגובה העיניים, בלי זרגון משפטי מיותר. ליווי אישי בדיני משפחה, עבודה ונדל״ן</p>
-          <div class="btn-group hero-reveal">
-            <a class="btn btn-primary btn-primary--hero magnetic" href="contact.html">קבעו שיחת ייעוץ</a>
-            <a class="btn btn-secondary magnetic" href="tel:035614488">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 1-1 2-2 2C9 19.5 4.5 15 4.5 5.5c0-1 1-2 2-2Z"/></svg>
-              התקשרו עכשיו
-            </a>
-          </div>
-          <ul class="hero-stats hero-reveal">
-            <li>
-              <strong>12</strong>
-              <span>שנות ניסיון</span>
-            </li>
-            <li>
-              <strong>3</strong>
-              <span>תחומים: משפחה עבודה ונדל״ן</span>
-            </li>
-            <li>
-              <strong>TLV</strong>
-              <span>משרד בוטיק בתל אביב</span>
-            </li>
-          </ul>
+    <section class="hero hero--showcase" aria-label="כהן ושות׳ — עורכי דין">
+      <div class="hero__mesh" aria-hidden="true"></div>
+      <div class="hero__stage">
+        <div class="container hero__content">
+          <h1 class="hero-title hero-reveal">
+            <span class="hero-title__lead">עורך דין שרואה את האדם</span>
+            <span class="hero-title__accent">מאחורי התיק<span class="hero-title__plus">+</span></span>
+          </h1>
+          <p class="hero-subtitle hero-reveal">ליווי משפטי מקיף, אישי ובלתי מתפשר – בלי ז׳רגון משפטי, בגובה העיניים.</p>
+          <a class="btn btn-primary btn-primary--hero hero-reveal magnetic" href="#contact">לשיחת ייעוץ ראשונית ללא עלות</a>
         </div>
-        <div class="hero-portrait hero-reveal">
-          <div class="hero-portrait__frame">
-            <span class="hero-portrait__tag">תיק 01</span>
-            <img src="assets/images/portrait-avi-cohen.png" alt="עו״ד אבי כהן, שותף מנהל במשרד כהן ושות׳" width="720" height="900">
-            <span class="hero-name">עו״ד אבי כהן, שותף מנהל</span>
-          </div>
-        </div>
+        <figure class="hero-statue" aria-hidden="true">
+          <img src="assets/images/hero-owl.png" alt="" width="733" height="525" decoding="async" fetchpriority="high">
+        </figure>
       </div>
     </section>
 
@@ -231,7 +202,7 @@
       </div>
     </section>
 
-    <section class="section section--close">
+    <section class="section section--close" id="contact">
       <div class="container split">
         <div>
           <span class="eyebrow">שיחה ראשונה</span>

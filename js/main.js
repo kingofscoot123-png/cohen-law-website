@@ -34,9 +34,77 @@
     wa: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.5 2 2 6.37 2 11.74c0 1.72.46 3.4 1.33 4.88L2 22l5.55-1.45a10.3 10.3 0 0 0 4.49 1.02h.01c5.54 0 10.04-4.37 10.04-9.74C22.09 6.37 17.58 2 12.04 2Zm5.83 13.78c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.81-.11-.42-.14-.95-.31-1.64-.6-2.89-1.25-4.77-4.15-4.92-4.35-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36h.55c.17 0 .41-.07.64.49.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.2-.14.31-.28.48-.14.17-.3.38-.42.51-.14.14-.28.29-.12.56.16.28.7 1.16 1.51 1.88 1.04.92 1.91 1.21 2.18 1.35.27.14.43.12.59-.07.16-.2.68-.79.86-1.06.18-.27.36-.22.61-.13.25.08 1.58.74 1.85.88.27.13.45.2.52.31.06.12.06.68-.18 1.36Z"/></svg>`,
   };
 
+  const navItemsHe = [
+    { type: "link", label: "בית", href: routes.home, page: "home" },
+    { type: "link", label: "אודות", href: routes.about, page: "about" },
+    {
+      type: "dropdown",
+      label: "תחומי התמחות",
+      children: [
+        { label: "דיני משפחה", href: routes.family, page: "family" },
+        { label: "דיני עבודה", href: routes.labor, page: "labor" },
+        { label: "נדל״ן", href: routes.realEstate, page: "real-estate" },
+      ],
+    },
+    { type: "link", label: "המלצות", href: routes.testimonials, page: "testimonials" },
+    { type: "link", label: "בלוג", href: routes.blog, page: "blog" },
+    { type: "link", label: "שאלות נפוצות", href: routes.faq, page: "faq" },
+    { type: "link", label: "צוות", href: routes.team, page: "team" },
+    { type: "link", label: "צור קשר", href: routes.contact, page: "contact" },
+  ];
+
+  const navItemsEn = [
+    { type: "link", label: "Home", href: routes.home, page: "home" },
+    { type: "link", label: "Real Estate", href: routes.realEstate, page: "real-estate" },
+    { type: "link", label: "Contact", href: routes.contact, page: "contact" },
+  ];
+
+  function navLinkClass(itemPage) {
+    return page === itemPage ? "is-active" : "";
+  }
+
+  function renderDesktopNav(items) {
+    return items
+      .map((item) => {
+        if (item.type === "link") {
+          return `<a href="${item.href}" class="${navLinkClass(item.page)}">${item.label}</a>`;
+        }
+        const childLinks = item.children
+          .map((child) => `<a href="${child.href}" class="${navLinkClass(child.page)}">${child.label}</a>`)
+          .join("");
+        return `
+          <div class="nav-drop">
+            <button type="button" aria-expanded="false">${item.label} ${icons.chevron}</button>
+            <div class="nav-drop-menu">${childLinks}</div>
+          </div>`;
+      })
+      .join("");
+  }
+
+  function renderMobileNav(items) {
+    return items
+      .map((item) => {
+        if (item.type === "link") {
+          return `<a href="${item.href}" class="mobile-nav__link ${navLinkClass(item.page)}">${item.label}</a>`;
+        }
+        const childLinks = item.children
+          .map(
+            (child) =>
+              `<a href="${child.href}" class="mobile-nav__link mobile-nav__link--sub ${navLinkClass(child.page)}">${child.label}</a>`
+          )
+          .join("");
+        return `
+          <div class="mobile-nav__group">
+            <span class="mobile-nav__label">${item.label}</span>
+            ${childLinks}
+          </div>`;
+      })
+      .join("");
+  }
+
   function headerHe() {
     return `
-      <a class="skip-link" href="#main">${isEn ? "Skip to content" : "דלג לתוכן"}</a>
+      <a class="skip-link" href="#main">דלג לתוכן</a>
       <header class="site-header">
         <div class="container header-inner">
           <a class="logo" href="${routes.home}" aria-label="כהן ושות׳, עורכי דין">
@@ -46,35 +114,26 @@
               <small>עורכי דין</small>
             </span>
           </a>
-          <nav class="nav" id="site-nav" aria-label="ניווט ראשי">
-            <a href="${routes.home}" class="${page === "home" ? "is-active" : ""}">בית</a>
-            <a href="${routes.about}" class="${page === "about" ? "is-active" : ""}">אודות</a>
-            <div class="nav-drop">
-              <button type="button" aria-expanded="false">תחומי התמחות ${icons.chevron}</button>
-              <div class="nav-drop-menu">
-                <a href="${routes.family}" class="${page === "family" ? "is-active" : ""}">דיני משפחה</a>
-                <a href="${routes.labor}" class="${page === "labor" ? "is-active" : ""}">דיני עבודה</a>
-                <a href="${routes.realEstate}" class="${page === "real-estate" ? "is-active" : ""}">נדל״ן</a>
-              </div>
-            </div>
-            <a href="${routes.testimonials}" class="${page === "testimonials" ? "is-active" : ""}">המלצות</a>
-            <a href="${routes.blog}" class="${page === "blog" ? "is-active" : ""}">בלוג</a>
-            <a href="${routes.faq}" class="${page === "faq" ? "is-active" : ""}">שאלות נפוצות</a>
-            <a href="${routes.team}" class="${page === "team" ? "is-active" : ""}">צוות</a>
-            <a href="${routes.contact}" class="${page === "contact" ? "is-active" : ""}">צור קשר</a>
-            <div class="nav-mobile-cta">
-              <a class="lang-switch" href="${routes.enHome}" lang="en" hreflang="en">EN</a>
-              <a class="btn btn-primary" href="${routes.contact}">דברו איתנו</a>
-            </div>
+          <nav class="nav nav--desktop" id="site-nav-desktop" aria-label="ניווט ראשי">
+            ${renderDesktopNav(navItemsHe)}
           </nav>
           <div class="header-actions">
             <a class="lang-switch" href="${routes.enHome}" lang="en" hreflang="en">EN</a>
             <a class="header-phone" href="tel:035614488">${icons.phone}<span>03-561-4488</span></a>
             <a class="btn btn-primary magnetic" href="${routes.contact}">דברו איתנו</a>
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="פתח תפריט"><span></span></button>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="פתח תפריט"><span></span></button>
           </div>
         </div>
-      </header>`;
+      </header>
+      <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <nav class="mobile-nav__inner" id="site-nav" aria-label="ניווט ראשי">
+          ${renderMobileNav(navItemsHe)}
+          <div class="mobile-nav__cta">
+            <a class="lang-switch" href="${routes.enHome}" lang="en" hreflang="en">EN</a>
+            <a class="btn btn-primary" href="${routes.contact}">דברו איתנו</a>
+          </div>
+        </nav>
+      </div>`;
   }
 
   function headerEn() {
@@ -89,23 +148,26 @@
               <small>Attorneys</small>
             </span>
           </a>
-          <nav class="nav" id="site-nav" aria-label="Primary">
-            <a href="${routes.home}" class="${page === "home" ? "is-active" : ""}">Home</a>
-            <a href="${routes.realEstate}" class="${page === "real-estate" ? "is-active" : ""}">Real Estate</a>
-            <a href="${routes.contact}" class="${page === "contact" ? "is-active" : ""}">Contact</a>
-            <div class="nav-mobile-cta">
-              <a class="lang-switch" href="${routes.heHome}" lang="he" hreflang="he">עב</a>
-              <a class="btn btn-primary" href="${routes.contact}">Book a consultation</a>
-            </div>
+          <nav class="nav nav--desktop" id="site-nav-desktop" aria-label="Primary">
+            ${renderDesktopNav(navItemsEn)}
           </nav>
           <div class="header-actions">
             <a class="lang-switch" href="${routes.heHome}" lang="he" hreflang="he">עב</a>
             <a class="header-phone" href="tel:+97235614488">${icons.phone}<span>03-561-4488</span></a>
             <a class="btn btn-primary" href="${routes.contact}">Book a consultation</a>
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span></button>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><span></span></button>
           </div>
         </div>
-      </header>`;
+      </header>
+      <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <nav class="mobile-nav__inner" id="site-nav" aria-label="Primary">
+          ${renderMobileNav(navItemsEn)}
+          <div class="mobile-nav__cta">
+            <a class="lang-switch" href="${routes.heHome}" lang="he" hreflang="he">עב</a>
+            <a class="btn btn-primary" href="${routes.contact}">Book a consultation</a>
+          </div>
+        </nav>
+      </div>`;
   }
 
   function footerHe() {
@@ -200,19 +262,20 @@
   if (headerMount) headerMount.innerHTML = isEn ? headerEn() : headerHe();
   if (footerMount) footerMount.innerHTML = isEn ? footerEn() : footerHe();
 
-  const nav = document.getElementById("site-nav");
+  const mobileNav = document.getElementById("mobile-nav");
   const toggle = document.querySelector(".menu-toggle");
   const setMenu = (open) => {
-    if (!nav || !toggle) return;
-    nav.classList.toggle("is-open", open);
+    if (!mobileNav || !toggle) return;
+    mobileNav.classList.toggle("is-open", open);
     toggle.classList.toggle("is-open", open);
     document.body.classList.toggle("is-menu-open", open);
+    mobileNav.setAttribute("aria-hidden", String(!open));
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? (isEn ? "Close menu" : "סגור תפריט") : (isEn ? "Open menu" : "פתח תפריט"));
   };
-  if (toggle && nav) {
-    toggle.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
-    nav.querySelectorAll("a").forEach((link) => {
+  if (toggle && mobileNav) {
+    toggle.addEventListener("click", () => setMenu(!mobileNav.classList.contains("is-open")));
+    mobileNav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => setMenu(false));
     });
     document.addEventListener("keydown", (e) => {

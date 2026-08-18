@@ -57,12 +57,12 @@
 
     frame.addEventListener("mousemove", (e) => {
       const r = frame.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width - 0.5) * 12;
-      const y = ((e.clientY - r.top) / r.height - 0.5) * 12;
-      img.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(1.03)`;
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 6;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 6;
+      img.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
     });
     frame.addEventListener("mouseleave", () => {
-      img.style.transform = "translate(0, 0) scale(1)";
+    img.style.transform = "translate(0, 0)";
     });
   }
 

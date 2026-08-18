@@ -67,16 +67,24 @@
   }
 
   function initHeroStagger(gsap) {
-    const items = document.querySelectorAll(".hero-copy > *");
+    const items = document.querySelectorAll(".hero-reveal");
     if (!items.length) return;
     if (reduce) {
-      revealAll(".hero-copy > *");
+      revealAll(".hero-reveal");
       return;
     }
     gsap.fromTo(
       items,
       { y: 28, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.85, stagger: 0.12, ease: "power3.out", delay: 0.08 }
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.85,
+        stagger: 0.1,
+        ease: "power3.out",
+        delay: 0.12,
+        onComplete: () => items.forEach((el) => el.classList.add("is-inview")),
+      }
     );
   }
 
@@ -219,7 +227,7 @@
         ScrollTrigger.refresh();
       })
       .catch(() => {
-        revealAll(".pillar, .pillar__num, .pillar__label, .reveal-on-scroll, .reveal-title");
+        revealAll(".hero-reveal, .pillar, .pillar__num, .pillar__label, .reveal-on-scroll, .reveal-title");
       });
   }
 

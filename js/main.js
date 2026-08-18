@@ -63,6 +63,16 @@
     return page === itemPage ? "is-active" : "";
   }
 
+  const logoFull = `${root}assets/images/logo-cohen.png`;
+
+  function renderLogo(variant) {
+    const isFooter = variant === "footer";
+    const alt = isEn ? "Cohen & Co., Attorneys" : "כהן ושות׳, עורכי דין";
+    const src = logoFull;
+    const cls = isFooter ? "logo-img logo-img--footer" : "logo-img logo-img--header";
+    return `<img class="${cls}" src="${src}" alt="${alt}" width="${isFooter ? 300 : 200}" height="${isFooter ? 150 : 88}" decoding="async">`;
+  }
+
   function renderDesktopNav(items) {
     return items
       .map((item) => {
@@ -108,11 +118,7 @@
       <header class="site-header">
         <div class="container header-inner">
           <a class="logo" href="${routes.home}" aria-label="כהן ושות׳, עורכי דין">
-            <span class="logo-mark">כ</span>
-            <span class="logo-text">
-              <strong>כהן ושות׳</strong>
-              <small>עורכי דין</small>
-            </span>
+            ${renderLogo("header")}
           </a>
           <nav class="nav nav--desktop" id="site-nav-desktop" aria-label="ניווט ראשי">
             ${renderDesktopNav(navItemsHe)}
@@ -142,11 +148,7 @@
       <header class="site-header">
         <div class="container header-inner">
           <a class="logo" href="${routes.home}" aria-label="Cohen & Co., Attorneys">
-            <span class="logo-mark">C</span>
-            <span class="logo-text">
-              <strong>Cohen & Co.</strong>
-              <small>Attorneys</small>
-            </span>
+            ${renderLogo("header")}
           </a>
           <nav class="nav nav--desktop" id="site-nav-desktop" aria-label="Primary">
             ${renderDesktopNav(navItemsEn)}
@@ -176,12 +178,8 @@
         <div class="container">
           <div class="footer-grid">
             <div class="footer-logo">
-              <a class="logo" href="${routes.home}">
-                <span class="logo-mark">כ</span>
-                <span class="logo-text">
-                  <strong>כהן ושות׳</strong>
-                  <small>עורכי דין</small>
-                </span>
+              <a class="logo logo--footer" href="${routes.home}">
+                ${renderLogo("footer")}
               </a>
               <p style="margin-top:16px;max-width:28ch">ייצוג משפטי במשפחה, עבודה ונדל״ן, בשפה ברורה ועם יחס אישי.</p>
             </div>
@@ -223,12 +221,8 @@
         <div class="container">
           <div class="footer-grid">
             <div class="footer-logo">
-              <a class="logo" href="${routes.home}">
-                <span class="logo-mark">C</span>
-                <span class="logo-text">
-                  <strong>Cohen & Co.</strong>
-                  <small>Attorneys</small>
-                </span>
+              <a class="logo logo--footer" href="${routes.home}">
+                ${renderLogo("footer")}
               </a>
               <p style="margin-top:16px;max-width:32ch">Legal representation in family, employment and real estate, in clear language, with personal attention.</p>
             </div>

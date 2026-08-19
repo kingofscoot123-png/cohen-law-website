@@ -203,7 +203,7 @@
               <a href="tel:035614488" style="direction:ltr">03-561-4488</a>
               <a href="https://wa.me/972525554488" target="_blank" rel="noopener">וואטסאפ</a>
               <a href="mailto:office@cohen-law.co.il">office@cohen-law.co.il</a>
-              <p style="margin-top:8px">ויצמן 14, תל אביב<br>א׳–ה׳ 09:00–18:00<br>ו׳ 09:00–13:00</p>
+              <p style="margin-top:8px">ויצמן 14, תל אביב<br>א׳ עד ה׳ 09:00–18:00<br>ו׳ 09:00–13:00</p>
             </div>
           </div>
           <div class="footer-bottom">
@@ -240,7 +240,7 @@
               <h3>Contact</h3>
               <a href="tel:+97235614488" style="direction:ltr">+972-3-561-4488</a>
               <a href="mailto:office@cohen-law.co.il">office@cohen-law.co.il</a>
-              <p style="margin-top:8px">14 Weizmann St., Tel Aviv<br>Sun–Thu 09:00–18:00</p>
+              <p style="margin-top:8px">14 Weizmann St., Tel Aviv<br>Sun to Thu 09:00–18:00</p>
             </div>
           </div>
           <div class="footer-bottom">
@@ -287,6 +287,90 @@
       });
     });
   });
+
+  function initQuotesCarousel() {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("[data-carousel]").forEach((root) => {
+      const track = root.querySelector(".quotes-carousel__track");
+      const slides = Array.from(root.querySelectorAll(".quotes-carousel__slide"));
+      const prevBtn = root.querySelector(".quotes-carousel__btn--prev");
+      const nextBtn = root.querySelector(".quotes-carousel__btn--next");
+      const dotsWrap = root.querySelector(".quotes-carousel__dots");
+      if (!track || slides.length < 2 || !dotsWrap) return;
+
+      let index = 0;
+      let timer = null;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = `quotes-carousel__dot${i === 0 ? " is-active" : ""}`;
+        dot.setAttribute("aria-label", `המלצה ${i + 1}`);
+        dot.addEventListener("click", () => {
+          goTo(i);
+          resetTimer();
+        });
+        dotsWrap.appendChild(dot);
+      });
+      const dots = Array.from(dotsWrap.querySelectorAll(".quotes-carousel__dot"));
+
+      function goTo(i) {
+        index = (i + slides.length) % slides.length;
+        slides.forEach((slide, idx) => slide.classList.toggle("is-active", idx === index));
+        dots.forEach((dot, idx) => dot.classList.toggle("is-active", idx === index));
+      }
+
+      function next() {
+        goTo(index + 1);
+      }
+
+      function prev() {
+        goTo(index - 1);
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        if (!reduce) timer = setInterval(next, 6000);
+      }
+
+      prevBtn?.addEventListener("click", () => {
+        prev();
+        resetTimer();
+      });
+      nextBtn?.addEventListener("click", () => {
+        next();
+        resetTimer();
+      });
+
+      root.addEventListener("mouseenter", () => clearInterval(timer));
+      root.addEventListener("mouseleave", resetTimer);
+
+      let startX = 0;
+      track.addEventListener(
+        "touchstart",
+        (e) => {
+          startX = e.touches[0].clientX;
+        },
+        { passive: true }
+      );
+      track.addEventListener(
+        "touchend",
+        (e) => {
+          const dx = e.changedTouches[0].clientX - startX;
+          if (Math.abs(dx) < 40) return;
+          if (dx > 0) prev();
+          else next();
+          resetTimer();
+        },
+        { passive: true }
+      );
+
+      goTo(0);
+      resetTimer();
+    });
+  }
+
+  initQuotesCarousel();
 
   document.querySelectorAll("form[data-validate]").forEach((form) => {
     form.addEventListener("submit", (e) => {

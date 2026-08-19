@@ -189,6 +189,62 @@
     tl.to(nums[4], { y: 20, duration: 0.2, ease: "none" }, 0.8);
   }
 
+  function initPracticeScroll(gsap, ScrollTrigger) {
+    const section = document.querySelector(".practice-scroll");
+    if (!section) return;
+
+    const panels = gsap.utils.toArray(".practice-scroll__panel");
+    const steps = gsap.utils.toArray(".practice-scroll__step");
+    if (!panels.length) return;
+
+    const setActive = (index) => {
+      panels.forEach((el, idx) => el.classList.toggle("is-active", idx === index));
+      steps.forEach((el, idx) => el.classList.toggle("is-active", idx === index));
+    };
+
+    if (reduce) {
+      setActive(panels.length - 1);
+      gsap.set(panels, { opacity: 1, y: 0, pointerEvents: "auto" });
+      return;
+    }
+
+    gsap.set(panels, { opacity: 0, y: 36 });
+    gsap.set(panels, { pointerEvents: "none" });
+    gsap.set(panels[0], { opacity: 1, y: 0, pointerEvents: "auto" });
+    setActive(0);
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "+=200%",
+        pin: ".practice-scroll__stage",
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    if (!tl.scrollTrigger) {
+      gsap.set(panels, { opacity: 1, y: 0, pointerEvents: "auto" });
+      return;
+    }
+
+    tl.call(() => setActive(0), null, 0);
+
+    panels.forEach((panel, i) => {
+      if (i === 0) return;
+      const start = i / (panels.length - 1);
+      const prev = panels[i - 1];
+
+      tl.to(prev, { opacity: 0, y: -28, duration: 0.25, ease: "none" }, start);
+      tl.to(panel, { opacity: 1, y: 0, duration: 0.25, ease: "none" }, start);
+      tl.set(prev, { pointerEvents: "none" }, start);
+      tl.set(panel, { pointerEvents: "auto" }, start);
+      tl.call(() => setActive(i), null, start);
+    });
+  }
+
   function boot() {
     initMagnetic();
     initPortraitParallax();
@@ -224,6 +280,7 @@
         initHeroStagger(gsap);
         initScrollReveals(gsap, ScrollTrigger);
         initPillars(gsap, ScrollTrigger);
+        initPracticeScroll(gsap, ScrollTrigger);
         ScrollTrigger.refresh();
       })
       .catch(() => {

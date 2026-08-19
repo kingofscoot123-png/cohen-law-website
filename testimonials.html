@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@600;700&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;600;700&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="testimonials" data-root="./">
@@ -21,34 +21,48 @@
         <p class="lede">בתיקי משפחה אנחנו שומרים על פרטיות: שמות מקוצרים, בלי פרטים מזהים. בנדל״ן ובעבודה, לפי הסכמת הלקוח</p>
       </div>
     </section>
-    <hr class="gold-rule container">
 
     <section class="section">
-      <div class="container quotes-grid">
-        <blockquote class="quote-card">
-          <p>הרגשתי שיש מישהו שמסביר לי מה קורה, לא רק מה כתוב בחוק. זה שינה לי את כל התקופה.</p>
-          <footer class="quote-meta">ר. כ. · ליווי בהליך גירושין</footer>
-        </blockquote>
-        <blockquote class="quote-card">
-          <p>עסקה מורכבת, לוחות זמנים לחוצים, ושפה אנגלית. המשרד ניהל הכול ברוגע ובדיוק.</p>
-          <footer class="quote-meta">Daniel M. · רכישת דירה בתל אביב</footer>
-        </blockquote>
-        <blockquote class="quote-card">
-          <p>אחרי השימוע הייתי בטוח שהכול אבוד. דניאל פירק את הסיפור לגורמים והחזרנו את השיחה לפרופורציות.</p>
-          <footer class="quote-meta">א. ל. · ליווי בהליך פיטורים</footer>
-        </blockquote>
-        <blockquote class="quote-card">
-          <p>יעל לא דיברה אליי מלמעלה. ישבה איתי על המסמכים, אמרה מה אפשר ומה לא, ונתנה לי לישון בלילה.</p>
-          <footer class="quote-meta">מ. ש. · הסכם משמורת ומזונות</footer>
-        </blockquote>
-        <blockquote class="quote-card">
-          <p>מצאו חריגת בנייה שהסוכן לא הזכיר. עצרנו, תיקנו את החוזה, ורק אז חתמנו. זה בדיוק מה שרציתי מעורך דין.</p>
-          <footer class="quote-meta">נועה ודוד · מכירת דירה ברמת גן</footer>
-        </blockquote>
-        <blockquote class="quote-card">
-          <p>כמעסיקה קטנה פחדתי מטעות פרוצדורלית. הליווי היה ענייני, קצר, וחסך לי תביעה.</p>
-          <footer class="quote-meta">שירה ב. · ליווי מעסיקה בסיום העסקה</footer>
-        </blockquote>
+      <div class="container">
+        <div class="quotes-carousel" data-carousel aria-roledescription="carousel" aria-label="המלצות לקוחות">
+          <div class="quotes-carousel__viewport">
+            <div class="quotes-carousel__track">
+              <blockquote class="quote-card quotes-carousel__slide is-active">
+                <p>הרגשתי שיש מישהו שמסביר לי מה קורה, לא רק מה כתוב בחוק. זה שינה לי את כל התקופה.</p>
+                <footer class="quote-meta"><span class="quote-meta__name">ר. כ.</span><span class="quote-meta__role">ליווי בהליך גירושין</span></footer>
+              </blockquote>
+              <blockquote class="quote-card quotes-carousel__slide">
+                <p>עסקה מורכבת, לוחות זמנים לחוצים, ושפה אנגלית. המשרד ניהל הכול ברוגע ובדיוק.</p>
+                <footer class="quote-meta"><span class="quote-meta__name">Daniel M.</span><span class="quote-meta__role">רכישת דירה בתל אביב</span></footer>
+              </blockquote>
+              <blockquote class="quote-card quotes-carousel__slide">
+                <p>אחרי השימוע הייתי בטוח שהכול אבוד. דניאל פירק את הסיפור לגורמים והחזיר את השיחה לפרופורציות.</p>
+                <footer class="quote-meta"><span class="quote-meta__name">א. ל.</span><span class="quote-meta__role">ליווי בהליך פיטורים</span></footer>
+              </blockquote>
+              <blockquote class="quote-card quotes-carousel__slide">
+                <p>יעל לא דיברה אליי מלמעלה. ישבה איתי על המסמכים, אמרה מה אפשר ומה לא, ונתנה לי לישון בלילה.</p>
+                <footer class="quote-meta"><span class="quote-meta__name">מ. ש.</span><span class="quote-meta__role">הסכם משמורת ומזונות</span></footer>
+              </blockquote>
+              <blockquote class="quote-card quotes-carousel__slide">
+                <p>מצאו חריגת בנייה שהסוכן לא הזכיר. עצרנו, תיקנו את החוזה, ורק אז חתמנו. זה בדיוק מה שרציתי מעורך דין.</p>
+                <footer class="quote-meta"><span class="quote-meta__name">נועה ודוד</span><span class="quote-meta__role">מכירת דירה ברמת גן</span></footer>
+              </blockquote>
+              <blockquote class="quote-card quotes-carousel__slide">
+                <p>כמעסיקה קטנה פחדתי מטעות פרוצדורלית. הליווי היה ענייני, קצר, וחסך לי תביעה.</p>
+                <footer class="quote-meta"><span class="quote-meta__name">שירה ב.</span><span class="quote-meta__role">ליווי מעסיקה בסיום העסקה</span></footer>
+              </blockquote>
+            </div>
+          </div>
+          <div class="quotes-carousel__controls">
+            <button class="quotes-carousel__btn quotes-carousel__btn--prev" type="button" aria-label="המלצה קודמת">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+            <div class="quotes-carousel__dots" role="tablist" aria-label="בחירת המלצה"></div>
+            <button class="quotes-carousel__btn quotes-carousel__btn--next" type="button" aria-label="המלצה הבאה">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
